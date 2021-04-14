@@ -1,0 +1,73 @@
+<!--Template-->
+{% extends 'shopTemplate.html' %}
+
+<!--Title-->
+{% block title %}
+Insert New Order
+{% endblock %}
+{% block head %}
+<style>
+ .insert form input[type="text"] {
+  	width: 310px;
+  	height: 30px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+  	border-radius: 15px;
+}
+.insert form button[type="submit"] {
+  	padding: 15px;
+  	background-color: #51A8DD;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #FCF6F5FF;
+  	transition: background-color 0.2s;
+  	border-radius: 25px;
+}
+.insert form button[type="submit"]:hover {
+  	background-color: #3D87CB;
+  	transition: background-color 0.2s;
+}
+</style>
+{% endblock %}
+{% block header %}
+<h2>Insert new orders</h2>
+{% endblock %}
+{% block body %}
+<p>Enter the information of the new orders</p>
+ <div class="insert">
+<form action="/insertcomplete" method='POST'>
+
+  <label for="order_no">order No:</label>
+  <input type="text" id="order_no" name="order_no"><br>
+
+  <label for="order_date">order date(YYYY-DD-MM)</label>
+  <input type="text" id="order_date" name="order_date"><br>
+
+  <label for="product_id">product id:</label>
+  <input type="text" id="product_id" name="product_id"><br>
+
+  <label for="product_name">product name:</label>
+  <input type="text" id="product_name" name="product_name"><br>
+
+  <label for="quantity">quantity:</label>
+  <input type="text" id="quantity" name="quantity"><br>
+
+  <label for="price">price:</label>
+  <input type="text" id="price" name="price"><br>
+
+  <label for="customer_name">customer name:</label>
+  <input type="text" id="customer_name" name="customer_name"><br>
+
+  <label for="customer_tel">customer tel:</label>
+  <input type="text" id="customer_tel" name="customer_tel"><br>
+
+  <label for="customer_address">customer address:</label>
+  <input type="text" id="customer_address" name="customer_address">
+   <label for="submit"></label>
+  <button type='submit'>Submit</button><br>
+
+</form>
+</div><br><br><br>
+{% endblock %}

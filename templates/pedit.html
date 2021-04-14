@@ -1,0 +1,98 @@
+<!--Template-->
+{% extends 'shopTemplate.html' %}
+
+<!--Title-->
+{% block title %}
+TOKYUHANDS order edit
+{% endblock %}
+{% block head %}
+<style>
+ .update form input[type="text"] {
+  	width: 310px;
+  	height: 30px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+  	border-radius: 15px;
+}
+.update form button[type="submit"] {
+  	padding: 15px;
+  	background-color: #51A8DD;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #FCF6F5FF;
+  	transition: background-color 0.2s;
+  	border-radius: 25px;
+}
+.update form button[type="submit"]:hover {
+  	background-color: #3D87CB;
+  	transition: background-color 0.2s;
+}
+</style>
+{% endblock %}
+{% block header %}
+<h2>Orders Information-TOKYUHANDS</h2>
+{% endblock %}
+{% block body %}
+<br>
+
+<p>Update the information of the orders</p>
+<table>
+  <thead>
+    <tr>
+      <th>order no</th>
+      <th>order date</th>
+      <th>product name</th>
+      <th>quantity</th>
+      <th>price</th>
+      <th>customer name</th>
+      <th>customer tel</th>
+      <th>customer address</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>{{output[0]}}</td>
+        <td>{{output[2]}}</td>
+        <td>{{output[10]}}</td>
+        <td>{{output[11]}}</td>
+        <td>{{output[12]}}</td>
+        <td>{{output[13]}}</td>
+        <td>{{output[14]}}</td>
+        <td>{{output[15]}}</td>
+      </tr>
+     </tbody>
+</table>
+ <div class="update">
+<form action="/peditcomplete" method='POST'>
+
+  <label for="order_date">order date:</label>
+  <input type="text" id="order_date" name="order_date" required><br>
+
+  <label for="product_name">product name:</label>
+  <input type="text" id="product_name" name="product_name" required><br>
+
+  <label for="quantity">quantity:</label>
+  <input type="text" id="quantity" name="quantity" required><br>
+
+  <label for="price">price:</label>
+  <input type="text" id="price" name="price" required><br>
+
+  <label for="customer_name">customer name:</label>
+  <input type="text" id="customer_name" name="customer_name" required><br>
+
+  <label for="customer_tel">customer tel:</label>
+  <input type="text" id="customer_tel" name="customer_tel" required><br>
+
+  <label for="customer_address">customer address:</label>
+  <input type="text" id="customer_address" name="customer_address" required><br>
+
+   <label for="submit"></label>
+  <button type='submit' id="submit">Update</button><br>
+
+<br><br>
+</form>
+ </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!--Template-->
+{% extends 'deliveryTemplate.html' %}
+
+<!--Title-->
+{% block title %}
+Yamato Transport order edit
+{% endblock %}
+{% block head %}
+{% endblock %}
+{% block header %}
+<h2>Orders Information-Yamato Transport</h2>
+{% endblock %}
+{% block body %}
+<br>
+<style>
+ .insert form input[type="text"] {
+  	width: 310px;
+  	height: 30px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+  	border-radius: 15px;
+}
+.insert form button[type="update"] {
+  	padding: 15px;
+  	background-color: #51A8DD;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #FCF6F5FF;
+  	transition: background-color 0.2s;
+  	border-radius: 25px;
+}
+.insert form button[type="update"]:hover {
+  	background-color: #3D87CB;
+  	transition: background-color 0.2s;
+}
+</style>
+<p>Update the information of the orders</p>
+<table>
+  <thead>
+    <tr>
+      <th>order no</th>
+      <th>delivery ref no</th>
+      <th>order date</th>
+      <th>receive package date</th>
+      <th>total weight(kg)</th>
+      <th>total delivery price</th>
+      <th>in charge delivery man</th>
+      <th>contact tel</th>
+      <th>expected delivery date</th>
+      <th>actual delivery datetime</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>{{output[0]}}</td>
+        <td>{{output[1]}}</td>
+        <td>{{output[2]}}</td>
+        <td>{{output[3]}}</td>
+        <td>{{output[4]}}</td>
+        <td>{{output[5]}}</td>
+        <td>{{output[6]}}</td>
+        <td>{{output[7]}}</td>
+        <td>{{output[8]}}</td>
+        <td>{{output[9]}}</td>
+      </tr>
+     </tbody>
+</table>
+ <div class="update">
+<form action="/deditcomplete" method='POST'>
+
+  <label for="delivery_ref_no">delivery ref no:</label>
+  <input type="text" id="delivery_ref_no" name="delivery_ref_no" placeholder="4-digit" required><br>
+
+  <label for="receive_package_date">receive package date</label>
+  <input type="text" id="receive_package_date" name="receive_package_date" required><br>
+
+  <label for="total_weight_kg">total weight(kg):</label>
+  <input type="text" id="total_weight_kg" name="total_weight_kg" required><br>
+
+  <label for="total_delivery_price"> total delivery price:</label>
+  <input type="text" id="total_delivery_price" name="total_delivery_price" required><br>
+
+  <label for="in_charge_delivery_man">in charge delivery man:</label>
+  <input type="text" id="in_charge_delivery_man" name="in_charge_delivery_man" required><br>
+
+  <label for="contact_tel">contact tel:</label>
+  <input type="text" id="contact_tel" name="contact_tel" required><br>
+
+  <label for="expected_delivery_date">expected delivery date:</label>
+  <input type="text" id="expected_delivery_date" name="expected_delivery_date" required><br>
+
+  <label for="actual_delivery_datetime">actual delivery datetime:</label>
+  <input type="text" id="actual_delivery_datetime" name="actual_delivery_datetime" required><br>
+
+   <label for="submit"></label>
+  <button type='submit' id="submit">Update</button><br>
+<br><br>
+</form>
+ </div>
+{% endblock %}

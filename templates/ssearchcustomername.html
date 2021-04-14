@@ -1,0 +1,85 @@
+<!--Template-->
+{% extends 'deliveryTemplate.html' %}
+
+<!--Title-->
+{% block title %}
+TOKYUHANDS order search
+{% endblock %}
+{% block head %}
+{% endblock %}
+{% block header %}
+<h2>Search-TOKYUHANDS</h2>
+{% endblock %}
+{% block body %}
+<h1>Search by Customer Name</h1>
+
+<div class="search">
+<form action="/ssearchcustomername" method=post>
+    <input type=text placeholder='order_id' name=search><input type=submit value="Search">
+</form>
+</div><br>
+<div class="del">
+<form action="/sdel" method=post>
+    <input type=text placeholder='input order_id only' name=dele><input type=submit value="Delete" onclick="popup()">
+</form>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>order No</th>
+      <th>delivery ref no</th>
+      <th>order date</th>
+      <th>receive package date</th>
+      <th>total weight(kg)</th>
+      <th>total delivery fee</th>
+      <th>in charge_delivery man</th>
+      <th>contact tel</th>
+      <th>expected delivery date</th>
+      <th>actual delivery datetime</th>
+      <th>product name</th>
+      <th>quantity</th>
+      <th>price</th>
+      <th>customer name</th>
+      <th>customer tel</th>
+      <th>customer address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in records %}
+      <tr>
+        <td>{{item[0]}}</td>
+        <td>{{item[1]}}</td>
+        <td>{{item[2]}}</td>
+        <td>{{item[3]}}</td>
+        <td>{{item[4]}}</td>
+        <td>{{item[5]}}</td>
+        <td>{{item[6]}}</td>
+        <td>{{item[7]}}</td>
+        <td>{{item[8]}}</td>
+        <td>{{item[9]}}</td>
+        <td>{{item[10]}}</td>
+        <td>{{item[11]}}</td>
+        <td>{{item[12]}}</td>
+        <td>{{item[13]}}</td>
+        <td>{{item[14]}}</td>
+        <td>{{item[15]}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="search">
+<form action="/ssearchorderno" >
+  <button type='submit'>search with order no.</button>
+</form><br>
+<form action="/ssearchproductname">
+  <button type='submit'>search with product name</button>
+</form><br>
+</div>
+
+
+<script>
+function popup() {
+  alert("Query Executed Successfully!");
+}
+</script>
+{% endblock %}
