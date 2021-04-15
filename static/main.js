@@ -1,28 +1,27 @@
 const fs = require('fs');
 const mysql = require('mysql');
-
 const con3021st = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
     password: '',
-    database: '3021st'
+    database: 'onlineshop'
 });
 const con302second = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
     password: '',
-    database: '302second'
+    database: 'common'
 });
 
 
 ~async function init() {    //Wrap everything into 1 single program for the sake of async function
     const firstpart = () => {   //Assign the function to a variable to better make use of "async" and "await" function
         return new Promise(resolve => {
-            con3021st.connect( function (err) {
+            con3021st.connect(function (err) {
                 if (err) throw err;
-                con3021st.query('select * from `head`', function (err, results) {   //Select all data from db
+                con3021st.query('select `order_no`, `order_date`, `product_name`, `quantity`, `price`, `customer_name`, `customer_tel`, `customer_address` from `order`', function (err, results) {   //Select all data from db
                     if (err) throw err;
                     fs.writeFile('302.json', JSON.stringify(results, null, 2), function (err) { //Create a json file with the data selected
                         if (err) throw err;
@@ -42,7 +41,7 @@ const con302second = mysql.createConnection({
         fs.readFile('302.json', (error, data) => {
             if (error) throw error;
             var obj = JSON.parse(data); //Turn the data extracted into javascript object
-            var query = 'INSERT INTO `head` (`head1`,`head2`,`head3`) VALUES (?,?,?)';  //Edit this according to different needs
+            var query = 'INSERT INTO `order_info` (`order_no`, `order_date`,  `product_name`, `quantity`, `price`, `customer_name`, `customer_tel`, `customer_address`) VALUES (?,?,?,?,?,?,?,?)';  //Edit this according to different needs
             var count = 0; //For counting how many cells inserted / How many times did the following loop repeat
             for (var objorder = 0; objorder < obj.length; objorder++) { //For each object in the [] list waiting to be inserted
                 var time = 0;   //To assign different objects' values in the [] into different variables according to the number generated
@@ -55,14 +54,35 @@ const con302second = mysql.createConnection({
                         var second = (obj[objorder][values]);
                         time++;
                     }
-                    else if (time === 2) {  //Third column
+                    else if (time === 2) {  //Third Column
                         var third = (obj[objorder][values]);
                         time++;
                     }
+                    else if (time === 3) {  //Fourth Column
+                        var fourth = (obj[objorder][values]);
+                        time++;
+                    }
+                    else if (time === 4) {  //Fifth Column
+                        var fifth = (obj[objorder][values]);
+                        time++;
+                    }
+                    else if (time === 5) {  //Sixth Column
+                        var sixth = (obj[objorder][values]);
+                        time++;
+                    }
+                    else if (time === 6) {  //Seventh Column
+                        var seventh = (obj[objorder][values]);
+                        time++;
+                    }
+                    else if (time === 7) {  //Eighth Column
+                        var eighth = (obj[objorder][values]);
+                        time++;
+                    }
+
                     count += 1;
                 }   //Create more variables for more known columns
                 //If there are 5 columns waiting to be inserted / 5 cells per row, there should be 5 variables used to store the object value
-                con302second.query(query, [first, second, third], function (err) {
+                con302second.query(query, [first, second, third, fourth, fifth, sixth, seventh, eighth], function (err) {
                     if (err) throw err;
                 });
             };
