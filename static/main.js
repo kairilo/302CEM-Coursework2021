@@ -5,14 +5,14 @@ const con3021st = mysql.createConnection({
     port: 3306,
     user: 'root',
     password: '',
-    database: 'onlineshop'
+    database: 'database1'
 });
 const con302second = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
     password: '',
-    database: 'common'
+    database: 'database2'
 });
 
 
@@ -21,7 +21,7 @@ const con302second = mysql.createConnection({
         return new Promise(resolve => {
             con3021st.connect(function (err) {
                 if (err) throw err;
-                con3021st.query('select `order_no`, `order_date`, `product_name`, `quantity`, `price`, `customer_name`, `customer_tel`, `customer_address` from `order`', function (err, results) {   //Select all data from db
+                con3021st.query('select `column1`, `column2`, `column3`, `column4`, `column5`, `column6`, `column7`, `column8` from `table1`', function (err, results) {   //Select all data from db
                     if (err) throw err;
                     fs.writeFile('302.json', JSON.stringify(results, null, 2), function (err) { //Create a json file with the data selected
                         if (err) throw err;
@@ -41,7 +41,7 @@ const con302second = mysql.createConnection({
         fs.readFile('302.json', (error, data) => {
             if (error) throw error;
             var obj = JSON.parse(data); //Turn the data extracted into javascript object
-            var query = 'INSERT INTO `order_info` (`order_no`, `order_date`,  `product_name`, `quantity`, `price`, `customer_name`, `customer_tel`, `customer_address`) VALUES (?,?,?,?,?,?,?,?)';  //Edit this according to different needs
+            var query = 'INSERT INTO `table2` (`column1`, `column2`, `column3`, `column4`, `column5`, `column6`, `column7`, `column8`) VALUES (?,?,?,?,?,?,?,?)';  //Edit this according to different needs
             var count = 0; //For counting how many cells inserted / How many times did the following loop repeat
             for (var objorder = 0; objorder < obj.length; objorder++) { //For each object in the [] list waiting to be inserted
                 var time = 0;   //To assign different objects' values in the [] into different variables according to the number generated
